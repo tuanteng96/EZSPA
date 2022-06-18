@@ -1,33 +1,49 @@
 import React from "react";
 import {
   App,
-  Panel,
-  Views,
   View,
-  Popup,
-  Page,
-  Navbar,
-  Toolbar,
-  NavRight,
-  Link,
-  Block,
-  BlockTitle,
-  LoginScreen,
-  LoginScreenTitle,
-  List,
-  ListItem,
-  ListInput,
-  ListButton,
-  BlockFooter,
 } from "framework7-react";
 
 import { getUser, removeUserStorage, setUserStorage } from "../constants/user";
 import UserService from "../service/user.service";
 import { setNotiID, getNotiID } from "./../constants/user";
-
 import routes from "../js/routes";
 import { NAME_APP } from "../constants/config";
 import { CLOSE_APP } from "../constants/prom21";
+// import Template7 from "template7";
+
+// window.language = localStorage.getItem("language") || "vi";
+// window.locales = {
+//   vi: {
+//     loading: "Đang tải....",
+//     THONG_KE: "Thống kê"
+//   },
+//   en: {
+//     loading: "loading...",
+//     THONG_KE: "Report"
+//   },
+// };
+// window.localize = function (key) {
+//   var language = window.language;
+//   language = language.replace(/-/g, "_");
+//   if (!window.locales[language]) language = language.substring(0, 2);
+//   if (!window.locales[language]) language = "en";
+
+//   return window.locales[language][key] ? window.locales[language][key] : key;
+// };
+
+// Template7.registerHelper("localize", function (value, options) {
+//   return window.localize(value);
+// });
+// //Change
+// languageChange = (e) => {
+//   localStorage.setItem("language", e);
+//   window.language = e;
+//   this.$f7.views.main.router.navigate(this.$f7.views.main.router.url, {
+//     reloadCurrent: true,
+//   });
+// };
+
 
 export default class extends React.Component {
   constructor() {
@@ -57,7 +73,7 @@ export default class extends React.Component {
             //console.log("Lần đầu mở App");
           },
           pageInit: function () {
-            //console.log("Khi quay lại");
+            
           },
         },
         view: {
@@ -73,7 +89,7 @@ export default class extends React.Component {
     return (
       <App params={this.state.f7params}>
         {/* Your main view, should have "view-main" class */}
-        <View main className="safe-areas" url="/" />
+        <View id="main-view" main className="safe-areas" url="/" />
       </App>
     );
   }
@@ -111,8 +127,8 @@ export default class extends React.Component {
   };
 
   componentDidMount() {
-    window.percent = 99;
     window.APP_READY = true;
+    window.percent = 100;
     document.body.addEventListener("noti_click.go_noti", this.notiDefault);
     document.body.addEventListener("noti_click.prod_id", this.notiProdID);
     document.body.addEventListener("noti_click.art_id", this.notiArtID);

@@ -1,41 +1,58 @@
 import React from "react";
-import { Link, Navbar, Page, Toolbar } from "framework7-react";
+import {
+  Link,
+  ListInput,
+  ListItem,
+  Navbar,
+  Page,
+  Sheet,
+  Toolbar,
+} from "framework7-react";
 import ToolBarBottom from "../../components/ToolBarBottom";
-import NotificationIcon from "../../components/NotificationIcon";
-import PanelLeft from "../../components/PanelLeft/PanelLeft";
 import PageNoData from "../../components/PageNoData";
-
-export default class ReportSell extends React.Component {
+import moment from "moment";
+import "moment/locale/vi";
+moment.locale("vi");
+export default class extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      List: []
+    };
   }
 
   componentDidMount() {
+    this.setState({
+      List: [1]
+    })
   }
 
   render() {
     return (
-      <Page name="employee-service">
+      <Page name="pos">
         <Navbar>
           <div className="page-navbar">
             <div className="page-navbar__back">
-              <Link onClick={() => this.$f7.panel.toggle()}>
+              <Link>
                 <i className="las la-bars font-size-xl"></i>
               </Link>
             </div>
             <div className="page-navbar__title">
-              <span className="title">Báo cáo khách hàng</span>
+              <span className="title">Pos</span>
             </div>
-            <div className="page-navbar__noti">
-              <NotificationIcon />
+            <div className="page-navbar__filter">
+              {/* <NotificationIcon /> */}
+              <Link>
+                <i className="las la-filter font-size-xl"></i>
+              </Link>
             </div>
           </div>
         </Navbar>
-        <PanelLeft f7={this} />
         <div className="page-render">
+          Bán hàng
           {/* <PageNoData text="Đang cập nhập ..." /> */}
         </div>
+
         <Toolbar tabbar position="bottom">
           <ToolBarBottom />
         </Toolbar>
